@@ -1,0 +1,69 @@
+l>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta regresiva San Valentín</title>
+    <style>
+        @font-face {
+            font-family: 'Eminor Bold';
+            src: url('Eminor-Bold.ttf') format('truetype'); /* Asegúrate de que el archivo esté en la misma carpeta */
+        }
+
+        body {
+            margin: 0;
+            width: 80vw;
+            height: 80vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8d7da;
+        }
+
+        #fondo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 897px; /* Ajusta según el tamaño del fondo */
+            height: 192px; /* Ajusta según el tamaño del fondo */
+            background: url('fondo.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        #countdown {
+            font-family: 'Archivo Black', sans-serif;
+            font-weight: bold;
+            font-size: 30px; /* Ajusta el tamaño del número */
+            color: #63323d;
+            position: absolute;
+            top: 165px; /* Ajusta la posición vertical */
+            left: 415px; /* Ajusta la posición horizontal */
+            transform: translate(-50%, -50%); /* Centra el número en su posición */
+            z-index: 2; /* Asegura que esté encima del fondo */
+        }
+    </style>
+</head>
+<body>
+    <div id="fondo"></div>
+    <div id="countdown"></div>
+
+    <script>
+        function actualizarCuentaRegresiva() {
+            const fechaObjetivo = new Date("Feb 26, 2025 00:00:00").getTime();
+            const ahora = new Date().getTime();
+            const diferencia = fechaObjetivo - ahora;
+
+            if (diferencia > 0) {
+                const diasRestantes = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+                document.getElementById("countdown").innerText = diasRestantes;
+            } else {
+                document.getElementById("countdown").innerText = "0";
+            }
+        }
+
+        actualizarCuentaRegresiva(); // Ejecutar al cargar
+        setInterval(actualizarCuentaRegresiva, 1000 * 60 * 60);
+    </script>
+</body>
+</html>
